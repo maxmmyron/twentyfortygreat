@@ -4,7 +4,8 @@
 $field-width: 500px;
 $grid-spacing: 15px;
 $grid-row-cells: 4;
-$tile-size: ($field-width - $grid-spacing * ($grid-row-cells + 1)) / $grid-row-cells;
+$tile-size: (
+  $field-width - $grid-spacing * ($grid-row-cells + 1)) / $grid-row-cells;
 $tile-border-radius: 3px;
 
 $text-color: #776E65;
@@ -12,13 +13,15 @@ $bright-text-color: #f9f6f2;
 
 $tile-color: #eee4da;
 $tile-gold-color: #edc22e;
-$tile-gold-glow-color: lighten($tile-gold-color, 15%);
+$tile-gold-glow-color: lighten($tile-gold-color, 15%
+);
 
 $game-container-background: #bbada0;
 
 $transition-speed: 100ms;
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 
@@ -221,7 +224,8 @@ hr {
         color: $bright-text-color;
       }
 
-      &.game-won, &.game-over {
+      &.game-won,
+      &.game-over {
         display: block;
       }
     }
@@ -305,20 +309,30 @@ hr {
   $limit: 11;
 
   // Colors for all 11 states, false = no special color
-  $special-colors: false false, // 2
-                   false false, // 4
-                   #f78e48 true, // 8
-                   #fc5e2e true, // 16
-                   #ff3333 true, // 32
-                   #ff0000 true, // 64
-                   false true, // 128
-                   false true, // 256
-                   false true, // 512
-                   false true, // 1024
-                   false true; // 2048
+  $special-colors: false false,
+  // 2
+  false false,
+  // 4
+  #f78e48 true,
+  // 8
+  #fc5e2e true,
+  // 16
+  #ff3333 true,
+  // 32
+  #ff0000 true,
+  // 64
+  false true,
+  // 128
+  false true,
+  // 256
+  false true,
+  // 512
+  false true,
+  // 1024
+  false true; // 2048
 
   // Build tile colors
-  @while $exponent <= $limit {
+  @while $exponent <=$limit {
     $power: pow($base, $exponent);
 
     &.tile-#{$power} {
@@ -347,18 +361,20 @@ hr {
 
       @if not $special-background {
         box-shadow: 0 0 30px 10px rgba($tile-gold-glow-color, $glow-opacity / 1.8),
-                    inset 0 0 0 1px rgba(white, $glow-opacity / 3);
+          inset 0 0 0 1px rgba(white, $glow-opacity / 3);
       }
 
       // Adjust font size for bigger numbers
-      @if $power >= 100 and $power < 1000 {
+      @if $power >=100 and $power < 1000 {
         font-size: 45px;
 
         // Media queries placed here to avoid carrying over the rest of the logic
         @include smaller(480px) {
           font-size: 25px;
         }
-      } @else if $power >= 1000 {
+      }
+
+      @else if $power >=1000 {
         font-size: 35px;
 
         @include smaller(480px) {
@@ -417,15 +433,12 @@ hr {
   margin-bottom: 0;
 }
 
-.game-explanation {
-  margin-top: 50px;
-}
-
 .sharing {
   margin-top: 20px;
   text-align: center;
 
-  > iframe, span {
+  >iframe,
+  span {
     display: inline-block;
     vertical-align: middle;
   }
@@ -439,7 +452,8 @@ hr {
   $tile-size: ($field-width - $grid-spacing * ($grid-row-cells + 1)) / $grid-row-cells;
   $tile-border-radius: 3px;
 
-  html, body {
+  html,
+  body {
     font-size: 15px;
   }
 
@@ -552,11 +566,53 @@ hr {
     }
   }
 
-  &:hover, .address:hover {
+  &:hover,
+  .address:hover {
     .address {
       opacity: 1;
       top: -45px;
       pointer-events: auto;
     }
   }
+}
+
+.expand-button-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+button.expand-button {
+  box-sizing: border-box;
+  width: 2rem;
+  height: 2rem;
+  padding: 0.5rem;
+  background: transparent;
+  border-radius: 6px;
+  border: 1px solid rgba(0 0 0 / 50%);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button.expand-button:hover {
+  background: rgba(0 0 0 / 10%);
+}
+
+button.expand-button:active {
+  background: rgba(0 0 0 / 20%);
+}
+
+.detail-container {
+  --height: 0px;
+  height: var(--height);
+  overflow: hidden;
+  transition: 0.8s;
+}
+
+.detail-container>h2 {
+  margin-top: 1.5rem;
+}
+
+.detail-container>p {
+  margin-top: 0.5rem;
 }
