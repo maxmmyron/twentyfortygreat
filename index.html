@@ -3,28 +3,29 @@
 
 <head>
   <meta charset="utf-8">
-  <title>2048 - AI</title>
+  <title>2040-gr8</title>
   <link href="style/main.css" rel="stylesheet" type="text/css">
   <link href="style/ai.css" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="favicon.ico">
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no">
-  <meta property="og:title" content="2048 game AI" />
-  <meta property="og:site_name" content="2048 game AI" />
-  <meta property="og:description" content="An AI for the 2048 game Using no hard-coded knowledge about the game." />
+  <meta property="og:title" content="2040-gr8" />
+  <meta property="og:site_name" content="2040-gr8" />
+  <meta property="og:description" content="2048 with snarky comments, an AI companion, and a chess.com-like post-game analysis" />
+  <meta property="og:type" content="website" />
   <meta property="og:image" content="http://gabrielecirulli.github.io/2048/meta/og_image.png" />
   <script>
-    (function (i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date(); a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    // (function (i, s, o, g, r, a, m) {
+    //   i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+    //     (i[r].q = i[r].q || []).push(arguments)
+    //   }, i[r].l = 1 * new Date(); a = s.createElement(o),
+    //     m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    // })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-    ga('create', 'UA-51255017-1', 'ronzil.github.io');
-    ga('send', 'pageview');
-    var i = new Image().src = "http://bob.quaji.com/ping.php?d=2048&u=" + escape(document.location) + "&r=" + escape(document.referrer);
+    // ga('create', 'UA-51255017-1', 'ronzil.github.io');
+    // ga('send', 'pageview');
+    // var i = new Image().src = "http://bob.quaji.com/ping.php?d=2048&u=" + escape(document.location) + "&r=" + escape(document.referrer);
   </script>
 </head>
 
@@ -85,9 +86,9 @@
       </div>
     </div>
     <div class="expand-button-container">
-      <button class="expand-button" id="tutorial-button" alt="toggle tutorial">🤔</button>
-      <button class="expand-button" id="explanation-button" alt="toggle explanation">🧠</button>
-      <button class="expand-button" id="about-button" alt="toggle credits">👨‍💻</button>
+      <button class="expand-button" id="tutorial-button" alt="toggle tutorial"><span class="btn-label">Tutorial</span>🤔</button>
+      <button class="expand-button" id="explanation-button" alt="toggle explanation"><span class="btn-label">Explanation</span>🧠</button>
+      <button class="expand-button" id="about-button" alt="toggle credits"><span class="btn-label">About</span>👨‍💻</button>
     </div>
     <section id="tutorial" class="detail-container">
       <h2>How to play</h2>
