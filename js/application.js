@@ -46,28 +46,14 @@ function sectionClick(id) {
     setDetailContainerHeight(el, el.id == id);
   });
 
-  // scroll as element is opening
-  setTimeout(function() {
-    document.getElementById(id).scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-      inline: "nearest"
-    });
-  }
-  , 400);
-
   const scrollInt = setInterval(function() {
-    document.getElementById(id).scrollIntoView({
-      // behavior: "smooth",
-      block: "start",
-      inline: "nearest"
-    });
+    document.getElementById(id).scrollIntoView();
 
     // clear once element is open
     // (takes much longer than 0.2 seconds for whatever reason)
     setTimeout(function() {
       clearInterval(scrollInt);
-    }, 600);
+    }, 650);
 
     // also cancel if element is closed
     if (!document.getElementById(idBtn).classList.contains("active")) {
@@ -78,7 +64,12 @@ function sectionClick(id) {
     document.getElementById(id).addEventListener("wheel", function() {
       clearInterval(scrollInt);
     }, {passive: true});
-  }, 16);
+
+    // cancel if user interacts with page (mobile?)
+    document.getElementById(id).addEventListener("touchstart", function() {
+      clearInterval(scrollInt);
+    }, {passive: true});
+  }, 10);
 
 }
 
