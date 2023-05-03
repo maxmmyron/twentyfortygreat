@@ -35,4 +35,4 @@ And to stay afloat in this economy, we plan to add
 - various pay-to-win features such as "unlock undo moves"
 through an novel and innovative subscription (& advertisement) based revenue plan
 
-We will be expecting an initial seed round as soon as I can convince on of my business majors to stop playing golf every weekend.
+We will be expecting an initial seed round as soon as I can convince one of my business major friends to stop playing golf every weekend.
