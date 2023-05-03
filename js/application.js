@@ -16,27 +16,75 @@ const setDetailContainerHeight = (el, isOpen = false) => {
   el.style.setProperty("--height", (isOpen ? el.scrollHeight: 0) + "px");
 }
 
-document.getElementById("tutorial-button").addEventListener("click", function() {
-  setDetailContainerHeight(document.getElementById("tutorial"), true);
-  setDetailContainerHeight(document.getElementById("explanation"), false);
-  setDetailContainerHeight(document.getElementById("about"), false);
+function sectionClick(id) {
+  let idBtn = id + "-button";
+
+  //LOGIC
+  // check if the element is already open ("active" class)
+  if (document.getElementById(idBtn).classList.contains("active")) {
+    // if it is, close it
+    setDetailContainerHeight(document.getElementById(id), false);
+    document.getElementById(idBtn).classList.remove("active");
+    return;
+  }
+
+  // STYLE
+  // remove other active classes
+  document.querySelectorAll(".expand-button").forEach(function(el) {
+    if (el.id == idBtn) {
+      el.classList.add("active");
+    }
+    else {
+      el.classList.remove("active");
+    }
+  });
+
+  // FUNCTION
+  // close all elements
+  document.querySelectorAll(".detail-container").forEach(function(el) {
+    // if el.id != id, close it
+    setDetailContainerHeight(el, el.id == id);
+  });
+
+  // scroll as element is opening
+  setTimeout(function() {
+    document.getElementById(id).scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest"
+    });
+  }
+  , 400);
+
+  const scrollInt = setInterval(function() {
+    document.getElementById(id).scrollIntoView({
+      // behavior: "smooth",
+      block: "start",
+      inline: "nearest"
+    });
+
+    // clear once element is open
+    // (takes much longer than 0.2 seconds for whatever reason)
+    setTimeout(function() {
+      clearInterval(scrollInt);
+    }, 600);
+
+    // also cancel if element is closed
+    if (!document.getElementById(idBtn).classList.contains("active")) {
+      clearInterval(scrollInt);
+    }
+
+    // also cancel if user scrolls (otherwise user and script fight over scroll position, jerky, etc.)
+    document.getElementById(id).addEventListener("wheel", function() {
+      clearInterval(scrollInt);
+    }, {passive: true});
+  }, 16);
+
+}
+
+// when clicking on .expand-button, open the corresponding section (read id and split by -)
+document.querySelectorAll(".expand-button").forEach(function(el) {
+  el.addEventListener("click", function() {
+    sectionClick(el.id.split("-")[0]);
+  });
 });
-
-document.getElementById("explanation-button").addEventListener("click", function() {
-  setDetailContainerHeight(document.getElementById("tutorial"), false);
-  setDetailContainerHeight(document.getElementById("explanation"), true);
-  setDetailContainerHeight(document.getElementById("about"), false);
-});
-
-document.getElementById("about-button").addEventListener("click", function() {
-  setDetailContainerHeight(document.getElementById("tutorial"), false);
-  setDetailContainerHeight(document.getElementById("explanation"), false);
-  setDetailContainerHeight(document.getElementById("about"), true);
-});
-
-
-
-
-
-
-

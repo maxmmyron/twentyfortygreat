@@ -200,7 +200,10 @@ hr {
       }
 
       .lower {
-        display: block;
+        // display:block messes up twitter button
+        // display: block;
+        display: flex;
+        justify-content: center;
         margin-top: 59px;
       }
 
@@ -584,7 +587,7 @@ hr {
 
 button.expand-button {
   box-sizing: border-box;
-  width: 2rem;
+  // width: 2rem;
   height: 2rem;
   padding: 0.5rem;
   background: transparent;
@@ -592,14 +595,28 @@ button.expand-button {
   border: 1px solid rgba(0 0 0 / 50%);
   cursor: pointer;
   transition: 0.2s;
-}
+  // light grey
+  color: #444;
+  font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
 
-button.expand-button:hover {
-  background: rgba(0 0 0 / 10%);
-}
+  // effects
+  &:hover {
+    background: rgba(0 0 0 / 10%);
+  }
 
-button.expand-button:active {
-  background: rgba(0 0 0 / 20%);
+  &:active {
+    background: rgba(0 0 0 / 20%);
+  }
+
+  &.active {
+    background: #eee0c9;
+    color: #111;
+  }
+
+  // label can be hidden if needed
+  .btn-label {
+    margin-right:0.5rem;
+  }
 }
 
 .detail-container {
