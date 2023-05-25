@@ -23,13 +23,23 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
 
     self.updateScore(metadata.score);
 
-    if (metadata.over) self.message(false); // You lose
-    if (metadata.won) self.message(true); // You win!
+    if (metadata.over) {
+      self.message(false); // You lose
+    }
+    else if (metadata.won) {
+      self.message(true); // You win!
+    }
+    else {
+      // find best move now
+      // console.log("finding best move");
+
+    }
   });
 };
 
 HTMLActuator.prototype.restart = function () {
-  if (ga) ga("send", "event", "game", "restart");
+  // removing google analytics
+  // if (ga) ga("send", "event", "game", "restart");
   this.clearMessage();
 };
 
@@ -109,14 +119,15 @@ HTMLActuator.prototype.message = function (won) {
   var type    = won ? "game-won" : "game-over";
   var message = won ? "You win!" : "Game over!"
 
-  if (ga) ga("send", "event", "game done", this.score, document.getElementById('run-count').value);
+  // removing google analytics
+  // if (ga) ga("send", "event", "game done", this.score, document.getElementById('run-count').value);
 
   this.messageContainer.classList.add(type);
   this.messageContainer.getElementsByTagName("p")[0].textContent = message;
 
   this.clearContainer(this.sharingContainer);
   this.sharingContainer.appendChild(this.scoreTweetButton());
-  twttr.widgets.load();
+  // twttr.widgets.load();
 };
 
 HTMLActuator.prototype.clearMessage = function () {
@@ -138,10 +149,16 @@ HTMLActuator.prototype.scoreTweetButton = function () {
 };
 
 
-HTMLActuator.prototype.showHint = function(hint) {
-  document.getElementById('feedback-container').innerHTML = ['↑','→','↓','←'][hint];
-}
+//old
+// HTMLActuator.prototype.showHint = function(hint) {
+  // document.getElementById('feedback-container').innerHTML = ['↑','→','↓','←'][hint];
+// }
 
 HTMLActuator.prototype.setRunButton = function(message) {
-  document.getElementById('run-button').innerHTML = message;
+  // from ai
+  // document.getElementById('run-button').innerHTML = message;
+}
+
+HTMLActuator.prototype.aicomment = function(message) {
+  document.getElementById('ai-comment').innerHTML = message;
 }

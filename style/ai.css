@@ -18,7 +18,7 @@
 }
 
 #run-button-container {
-  float: left;
+  /* float: left; */
 }
 
 #run-button , #hint-button {

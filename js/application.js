@@ -53,7 +53,7 @@ function sectionClick(id) {
     // (takes much longer than 0.2 seconds for whatever reason)
     setTimeout(function() {
       clearInterval(scrollInt);
-    }, 650);
+    }, 800);
 
     // also cancel if element is closed
     if (!document.getElementById(idBtn).classList.contains("active")) {

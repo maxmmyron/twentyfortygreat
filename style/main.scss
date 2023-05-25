@@ -159,7 +159,7 @@ hr {
 // Game field mixin used to render CSS at different width
 @mixin game-field {
   .game-container {
-    margin-top: 40px;
+    margin-top: 20px;
     position: relative;
     padding: $grid-spacing;
 
@@ -632,4 +632,9 @@ button.expand-button {
 
 .detail-container>p {
   margin-top: 0.5rem;
+}
+
+#ai-comment {
+  // margin-left:10px;
+  height: 24px;
 }

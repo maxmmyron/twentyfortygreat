@@ -42,8 +42,9 @@ KeyboardInputManager.prototype.listen = function () {
     if (!modifiers) {
       if (mapped !== undefined) {
         event.preventDefault();
-        var feedbackContainer  = document.getElementById('feedback-container');
-        feedbackContainer.innerHTML = ' ';
+        // old - removed hint on move
+        // var feedbackContainer  = document.getElementById('feedback-container');
+        // feedbackContainer.innerHTML = ' ';
         self.emit("move", mapped);
       }
 
@@ -54,19 +55,20 @@ KeyboardInputManager.prototype.listen = function () {
   var retry = document.getElementsByClassName("retry-button")[0];
   retry.addEventListener("click", this.restart.bind(this));
 
-  var hintButton = document.getElementById('hint-button');
-  hintButton.addEventListener('click', function(e) {
-    e.preventDefault();
-    var feedbackContainer  = document.getElementById('feedback-container');
-    feedbackContainer.innerHTML = '<img src=img/spinner.gif />';
-    self.emit('think');
-  });
+  // no longer needed
+  // var hintButton = document.getElementById('hint-button');
+  // hintButton.addEventListener('click', function(e) {
+  //   e.preventDefault();
+  //   var feedbackContainer  = document.getElementById('feedback-container');
+  //   feedbackContainer.innerHTML = '<img src=img/spinner.gif />';
+  //   self.emit('think');
+  // });
 
-  var runButton = document.getElementById('run-button');
-  runButton.addEventListener('click', function(e) {
-    e.preventDefault();
-    self.emit('run')
-  })
+  // var runButton = document.getElementById('run-button');
+  // runButton.addEventListener('click', function(e) {
+  //   e.preventDefault();
+  //   self.emit('run')
+  // })
 
 
   // Listen to swipe events
