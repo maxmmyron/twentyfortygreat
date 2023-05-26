@@ -30,16 +30,12 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
       self.message(true); // You win!
     }
     else {
-      // find best move now
-      // console.log("finding best move");
-
+      // could find best move now, but I don't think I can access that method from here
     }
   });
 };
 
 HTMLActuator.prototype.restart = function () {
-  // removing google analytics
-  // if (ga) ga("send", "event", "game", "restart");
   this.clearMessage();
 };
 
@@ -119,15 +115,11 @@ HTMLActuator.prototype.message = function (won) {
   var type    = won ? "game-won" : "game-over";
   var message = won ? "You win!" : "Game over!"
 
-  // removing google analytics
-  // if (ga) ga("send", "event", "game done", this.score, document.getElementById('run-count').value);
-
   this.messageContainer.classList.add(type);
   this.messageContainer.getElementsByTagName("p")[0].textContent = message;
 
   this.clearContainer(this.sharingContainer);
   this.sharingContainer.appendChild(this.scoreTweetButton());
-  // twttr.widgets.load();
 };
 
 HTMLActuator.prototype.clearMessage = function () {
@@ -148,16 +140,6 @@ HTMLActuator.prototype.scoreTweetButton = function () {
   return tweet;
 };
 
-
-//old
-// HTMLActuator.prototype.showHint = function(hint) {
-  // document.getElementById('feedback-container').innerHTML = ['↑','→','↓','←'][hint];
-// }
-
-HTMLActuator.prototype.setRunButton = function(message) {
-  // from ai
-  // document.getElementById('run-button').innerHTML = message;
-}
 
 HTMLActuator.prototype.aicomment = function(message) {
   document.getElementById('ai-comment').innerHTML = message;

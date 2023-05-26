@@ -42,23 +42,24 @@ function getBestMove(grid, runs, debug) {
 }
 
 function getBestMoveArray(grid, runs, debug) {
-	var moveArr = [0,0,0,0];
+	let moveArr = [0,0,0,0];
 	
-	for (var i = 0; i < 4; i++) {
+	for (let i = 0; i < 4; i++) {
 		// score move position
-		var res = multiRandomRun(grid, i, runs);
-		var score = res.score;
-		// console.log(res, score);
+		let res = multiRandomRun(grid, i, runs);
+		let score = res.score;
 
 		if (isNaN(score)) {
-			// console.log('ERROR: NaN');
+			if (debug) {
+				console.log('ERROR: NaN');
+			}
 		}
 		else {
 			moveArr[i] += score;
 		}
 
 		if (debug) {
-			// console.log('Move ' + moveName(i) + ": Extra score - " + score);
+			console.log('Move ' + moveName(i) + ": Extra score - " + score);
 		}
 	}
 	if (!grid.movesAvailable()) console.log('bug2');
@@ -149,7 +150,7 @@ function AI_getMoveRankings(grid, debug) {
 	// could hard-code runs later
 	// could also base runs off of computer performance - what is completed within x ms
 	// could continue running until user inputs next move
-	var runs = document.getElementById('run-count').value;
+	let runs = document.getElementById('run-count').value;
 	return getBestMoveArray(grid, runs, debug);
 }
 
