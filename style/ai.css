@@ -17,9 +17,6 @@
 	width: 50px;
 }
 
-#run-button-container {
-  float: left;
-}
 
 #run-button , #hint-button {
 	width: 120px;

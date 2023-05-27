@@ -41,6 +41,46 @@ function getBestMove(grid, runs, debug) {
 		return {move: bestMove, score: bestScore};
 }
 
+function getBestMoveArray(grid, runs, debug) {
+	let moveArr = [0,0,0,0];
+	
+	for (let i = 0; i < 4; i++) {
+		// score move position
+		let res = multiRandomRun(grid, i, runs);
+		let score = res.score;
+
+		if (isNaN(score)) {
+			if (debug) {
+				console.log('ERROR: NaN');
+			}
+		}
+		else {
+			moveArr[i] += score;
+		}
+
+		if (debug) {
+			console.log('Move ' + moveName(i) + ": Extra score - " + score);
+		}
+	}
+	if (!grid.movesAvailable()) console.log('bug2');
+	// assert move found
+	let bestMove = moveArr.indexOf(Math.max.apply(Math, moveArr));
+
+	if (debug) {
+		console.log('Movearr ' + moveArr);
+	}
+
+	if (bestMove == -1) {
+		console.log('ERROR...');
+		errorGrid = grid.clone();
+	}
+
+	if (debug) {
+		console.log('Best move: ' + moveName(bestMove) + ": Extra score - " + moveArr[bestMove]);
+	}
+
+	return moveArr;
+}
 
 
 function multiRandomRun(grid, move, runs) {
@@ -104,5 +144,13 @@ function moveAndAddRandomTiles(grid, direction) {
 function AI_getBest(grid, debug) {
 	var runs = document.getElementById('run-count').value;
     return getBestMove(grid, runs, debug);  
+}
+
+function AI_getMoveRankings(grid, debug) {
+	// could hard-code runs later
+	// could also base runs off of computer performance - what is completed within x ms
+	// could continue running until user inputs next move
+	let runs = document.getElementById('run-count').value;
+	return getBestMoveArray(grid, runs, debug);
 }
 
